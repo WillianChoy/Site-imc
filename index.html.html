@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMC</title>
+  </head>
+  <body>
+    <h1>Calculando IMC</h1>
+    <div>
+      <label for="peso"> Digite seu peso:</label>
+      <input type="number" id="peso" placeholder="ex: 70" /> <br /><br />
+
+      <label for="altura">Digite sua altura:</label>
+      <input
+        type="number"
+        id="altura"
+        placeholder="ex: 1.70"
+        step="0.01"
+      /><br /><br />
+
+      <label for="validador">Click para validar </label>
+      <input type="button" value="validar" onclick="imc()" />
+      <input type="button" value="cancelar" onclick="cancela()" />
+    </div>
+
+    <div>
+      <p id="res"></p>
+    </div>
+    <script>
+      var resposta = document.getElementById('res');
+      function imc() {
+        var altura = Number(document.getElementById('altura').value);
+        var peso = Number(document.getElementById('peso').value);
+        var imc = peso / (altura * altura);
+        if (imc < 18.5) {
+          resposta.innerHTML = 'Magro';
+        } else if (imc < 25) {
+          resposta.innerHTML = 'Normal';
+        } else if (imc < 30) {
+          resposta.innerHTML = 'Sobrepeso';
+        } else {
+          resposta.innerHTML = 'Obesidade';
+        }
+      }
+
+      function cancela() {
+        resposta.innerHTML = '';
+      }
+    </script>
+  </body>
+</html>
