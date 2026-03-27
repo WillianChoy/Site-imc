@@ -5,13 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMC</title>
     <style>
-      html {
-        background-color: rgb(72, 72, 161);
+      p {
+        margin-right: 150px;
+        width: 700px;
+      }
+      div {
+        height: 100px;
+        width: 700px;
+      }
+      h1 {
+        background-image: url('fita.png');
+        background-position: center;
+        width: 700px;
+        height: auto;
+        padding: 20px;
+        color: rgb(8, 8, 8);
+        background-size: cover;
+        text-align: center;
+        font-weight: 400;
+      }
+      div#res {
+        color: red;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 200;
+        padding: 20px;
       }
     </style>
   </head>
   <body>
-    <h1>Calculando IMC. Dani, te amo! s2s2</h1>
+    <h1>Calculando IMC</h1>
+
+    <p>
+      O Índice de Massa Corporal (IMC) é um parâmetro internacional, adotado
+      pela OMS, que avalia se uma pessoa está em seu peso ideal, com sobrepeso
+      ou obesidade. Calculado pela fórmula peso / (altura x altura), o resultado
+      ajuda a identificar riscos à saúde, embora não distinga gordura de massa
+      muscular.
+    </p>
     <div>
       <label for="peso"> Digite seu peso:</label>
       <input type="number" id="peso" placeholder="ex: 70" /> <br /><br />
@@ -24,32 +54,43 @@
         step="0.01"
       /><br /><br />
 
-      <label for="validador">Click para validar </label>
+      <label for="validador">Click - > </label>
       <input type="button" value="validar" onclick="imc()" />
       <input type="button" value="cancelar" onclick="cancela()" />
     </div>
 
-    <div>
-      <p id="res"></p>
-    </div>
+    <div id="res"></div>
     <script>
-      var resposta = document.getElementById('res');
       function imc() {
-        var altura = Number(document.getElementById('altura').value);
-        var peso = Number(document.getElementById('peso').value);
-        var imc = peso / (altura * altura);
+        var resposta = document.getElementById('res');
+        var altura = document.getElementById('altura').value;
+        var peso = document.getElementById('peso').value;
+
+        if (altura === '' || peso === '') {
+          resposta.innerHTML = 'Preencha todos os campos';
+          return;
+        }
+
+        var raltura = Number(altura);
+        var rpeso = Number(peso);
+        var imc = rpeso / (raltura * raltura);
         if (imc < 18.5) {
-          resposta.innerHTML = 'Magro';
+          resposta.innerHTML = 'Você está magro';
+          resposta.style.color = 'orange';
         } else if (imc < 25) {
-          resposta.innerHTML = 'Normal';
+          resposta.innerHTML = 'Seu peso está normal';
+          resposta.style.color = 'green';
         } else if (imc < 30) {
-          resposta.innerHTML = 'Sobrepeso';
+          resposta.innerHTML = 'Você está com sobrepeso';
+          resposta.style.color = 'darkorange';
         } else {
-          resposta.innerHTML = 'Obesidade';
+          resposta.innerHTML = 'Você está com obesidade';
+          resposta.style.color = 'red';
         }
       }
 
       function cancela() {
+        var resposta = document.getElementById('res');
         resposta.innerHTML = '';
       }
     </script>
