@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMC</title>
     <style>
+      html{
+        background-color: rgb(32, 161, 179);
+      }
       p {
         margin-right: 150px;
         width: 100%;
@@ -13,17 +16,7 @@
         height: auto;
         width: 100%;
       }
-      h1 {
-        background-image: url('fita.png');
-        background-position: center;
-        width: 100%;
-        height: auto;
-        padding: 20px;
-        color: rgb(8, 8, 8);
-        background-size: cover;
-        text-align: center;
-        font-weight: 400;
-      }
+   
       div#res {
         color: red;
         font-family: 'Courier New', Courier, monospace;
@@ -60,6 +53,7 @@
     </div>
 
     <div id="res"></div>
+    
     <script>
       function imc() {
         var resposta = document.getElementById('res');
