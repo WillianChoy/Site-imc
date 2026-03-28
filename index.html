@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMC</title>
     <style>
-      html{
+      html {
         background-color: rgb(32, 161, 179);
       }
       p {
@@ -16,7 +16,7 @@
         height: auto;
         width: 100%;
       }
-   
+
       div#res {
         color: red;
         font-family: 'Courier New', Courier, monospace;
@@ -53,7 +53,8 @@
     </div>
 
     <div id="res"></div>
-    
+    <div id="resto"></div>
+
     <script>
       function imc() {
         var resposta = document.getElementById('res');
@@ -76,15 +77,34 @@
           resposta.style.color = 'green';
         } else if (imc < 30) {
           resposta.innerHTML = 'Você está com sobrepeso';
-          resposta.style.color = 'darkorange';
+          resposta.style.color = 'yellow';
         } else {
           resposta.innerHTML = 'Você está com obesidade';
           resposta.style.color = 'red';
         }
+
+        var pesoideal = 24.9 * (raltura * raltura);
+        var resto = rpeso - pesoideal;
+        var idresto = document.getElementById('resto');
+        if (rpeso > pesoideal) {
+          idresto.innerHTML = `Seu peso ideal é ${pesoideal.toFixed(
+            1
+          )} kg. Precisa emagrecer ${resto.toFixed(1)} Kgs`;
+        } else if (rpeso < 18.5 * (raltura * raltura)) {
+          let pesoMin = 18.5 * (raltura * raltura);
+          let ganhar = pesoMin - rpeso;
+
+          idresto.innerHTML = `Seu peso ideal mínimo é ${pesoMin.toFixed(1)} kg.
+          Precisa ganhar ${ganhar.toFixed(1)} kg`;
+        } else {
+          idresto.innerHTML = `Você já está no peso ideal 🎉`;
+        }
       }
 
       function cancela() {
-        var resposta = document.getElementById('res');
+        let resposta = document.getElementById('res');
+        let resto = document.getElementById('resto');
+        resto.innerHTML = '';
         resposta.innerHTML = '';
       }
     </script>
